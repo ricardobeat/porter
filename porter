@@ -13,12 +13,13 @@ LIB="$ROOT/lib"
 PORTER_DIR="$HOME/.porter"
 PORTER_CACHE_DIR="$HOME/.porter/.cache"
 
-source $LIB/boot.sh
-source $LIB/colors.sh
-
 VERSION="0.0.1"
 
 # -----------------------------------------------------------------------------
+
+source $LIB/utils.sh
+source $LIB/boot.sh
+source $LIB/colors.sh
 
 for command in $ROOT/commands/*; do
   source $command
@@ -42,16 +43,14 @@ usage () {
   "
 }
 
+ACTION=${1:-"help"}
+ARGS="${@:2}"
+
 validate_arguments () {
   if [[ -z $ARGS ]]; then
     die "$(_echo gray Usage:) $(_echo white porter $ACTION $(_echo yellow name))"
   fi
 }
-
-# -----------------------------------------------------------------------------
-
-ACTION=${1:-"help"}
-ARGS="${@:2}"
 
 case $ACTION in
 
