@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+
+# Get own dir, resolve relative path if needed
+ROOT=$(dirname $(readlink $0 || echo $0))
+if [[ $ROOT == ../* ]]; then
+  ROOT=$(cd "$(dirname $0)/$ROOT"; pwd);
+fi
+LIB="$ROOT/lib"
+
+PORTER_DIR="$HOME/.porter"
+PORTER_CACHE_DIR="$HOME/.porter/.cache"
+
+source $LIB/boot.sh
+source $LIB/colors.sh
+
+VERSION="0.0.1"
+
+# -----------------------------------------------------------------------------
+
+for command in $ROOT/commands/*; do
+  source $command
+done
+
+# -----------------------------------------------------------------------------
+
+usage () {
+  echo "
+  $(_echo gray reverse " porter v$VERSION ")
+
+  Usage:
+    porter $(_echo yellow bold install) $(_echo gray package_name)
+    porter $(_echo cyan bold uninstall) $(_echo gray package_name)
+    porter $(_echo green bold search) $(_echo gray string)
+    porter $(_echo blue bold list)
+    porter $(_echo purple bold link)
+    porter $(_echo purple bold publish)
+
+  $(_echo blue underline http://github.com/ricardobeat/porter)
+  "
+}
+
+validate_arguments () {
+  if [[ -z $ARGS ]]; then
+    die "$(_echo gray Usage:) $(_echo white porter $ACTION $(_echo yellow name))"
+  fi
+}
+
+# -----------------------------------------------------------------------------
+
+ACTION=${1:-"help"}
+ARGS="${@:2}"
+
+case $ACTION in
+
+  install)
+    validate_args
+    do_install $2
+    ;;
+
+  uninstall|remove)
+    validate_args
+    do_uninstall $2
+    ;;
+
+  search)
+    validate_args
+    do_search $2
+    ;;
+
+  list)
+    do_list
+    ;;
+
+  link)
+    validate_args
+    do_link
+    ;;
+
+  publish)
+    validate_args
+    do_publish
+    ;;
+
+  help|--help|*)
+    usage
+    ;;
+
+esac
