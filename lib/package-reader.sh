@@ -25,17 +25,6 @@ keywords () {
   PACKAGE_KEYWORDS=$(echo "$@" | sed -e 's/,/ /g' -e 's/  */ /g')
 }
 
-# @path () {
-#   [[ $PACKAGE_NAME ]] || die "Missing package name."
-#   PACKAGE_URL="$1"
-# }
-
-# @sha1 () {
-#   [[ $PACKAGE_URL ]] || die "Missing path URL."
-#   PACKAGE_SHA1="$1"
-#   data_end
-# }
-
 download_and_unpack () {
   local DEST="$PORTER_DIR/$PACKAGE_ID"
   local CACHE_DEST="$PORTER_CACHE_DIR/$PACKAGE_ID.tar.gz"
@@ -43,11 +32,6 @@ download_and_unpack () {
   mkdir "$DEST"
   tar -C "$DEST" xzf "$CACHE_DEST"
 }
-
-# install: () {
-#   [[ $PACKAGE_SHA1 ]] || die "Missing SHA1."
-#   download_and_unpack
-# }
 
 validate_package () {
   if [ -z "$PACKAGE_NAME" ]; then die_with 101 "Missing package name"; fi
