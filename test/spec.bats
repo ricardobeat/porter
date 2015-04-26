@@ -8,6 +8,9 @@ teardown () {
   unset PACKAGE_DESCRIPTION
   unset PACKAGE_KEYWORDS
   unset PACKAGE_ID
+  if [ -f "$PORTER_BIN_DIR/porter-test-bin1" ]; then
+    unlink "$PORTER_BIN_DIR/porter-test-bin1"
+  fi
 }
 
 @test "prints help text when invoked without arguments" {
@@ -53,4 +56,18 @@ teardown () {
 @test "package with an install error" {
   run porter install test/test-packages/install-error.sh
   [ "$status" -ne 0 ]
+}
+
+setup () {
+  TEST_DIR="$TMPDIR/porter-tests"
+  mkdir -p "$TEST_DIR"
+}
+
+@test "install bin" {
+  run porter install test/test-packages/test-bin.sh
+  run type porter-test-bin1
+  [ "$status" -eq 0 ]
+  run porter-test-bin1
+  [ "$status" -eq 0 ]
+  [ "$output" = "bin test" ]
 }

@@ -1,10 +1,13 @@
 
 install_bin () {
-  if [[ ! -d "$PORTER_BIN_DIR" ]]; then
-    die "$PORTER_BIN_DIR/bin directory does not exist"
-  fi
+  if [[ ! -d "$PORTER_BIN_DIR" ]]; then die "$PORTER_BIN_DIR/bin directory does not exist"; fi
+  if [[ ! -f "$1" ]]; then die_with 201 "install_bin: file '$1' not found"; fi
+  
+  local source_path="$(get_absolute_path $1)"
+  local dest_path="$PORTER_BIN_DIR/$(basename $1)"
+
   _echo cyan "Symlinking $1 into /usr/local/bin..."
-  ln -s 
+  ln -s "$source_path" "$dest_path"
 }
 
 requires_bin () {
