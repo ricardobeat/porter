@@ -12,6 +12,10 @@ LIB="$ROOT/lib"
 
 VERSION="0.0.1"
 
+if [ "$UID" -eq 0 ]; then
+  echo "You should not run porter as root."; exit 1
+fi
+
 # -----------------------------------------------------------------------------
 
 source $LIB/utils.sh
