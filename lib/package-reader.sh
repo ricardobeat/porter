@@ -24,7 +24,7 @@ describe () {
 }
 
 keywords () {
-  PACKAGE_KEYWORDS="${@//,/ }" # turn all commas into spaces
+  PACKAGE_KEYWORDS=$(echo "$@" | sed -e 's/,/ /g' -e 's/  */ /g')
 }
 
 # @path () {
@@ -46,7 +46,7 @@ download_and_unpack () {
   tar -C "$DEST" xzf "$CACHE_DEST"
 }
 
-install: () {
-  [[ $PACKAGE_SHA1 ]] || die "Missing SHA1."
-  download_and_unpack
-}
+# install: () {
+#   [[ $PACKAGE_SHA1 ]] || die "Missing SHA1."
+#   download_and_unpack
+# }
