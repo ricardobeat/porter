@@ -1,6 +1,10 @@
 
 install_bin () {
-  echo "Symlinking $1 into /usr/local/bin..."
+  if [[ ! -d "$PORTER_BIN_DIR" ]]; then
+    die "$PORTER_BIN_DIR/bin directory does not exist"
+  fi
+  _echo cyan "Symlinking $1 into /usr/local/bin..."
+  ln -s 
 }
 
 requires_bin () {

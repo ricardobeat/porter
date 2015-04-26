@@ -13,13 +13,11 @@ name () {
 }
 
 version () {
-  [[ $PACKAGE_NAME ]] || die "Missing package name."
   PACKAGE_VERSION="$1"
   PACKAGE_ID="$PACKAGE_NAME-$PACKAGE_VERSION"
 }
 
 describe () {
-  [[ $PACKAGE_VERSION ]] || die "Missing package version."
   PACKAGE_DESCRIPTION="$@"
 }
 
@@ -50,3 +48,12 @@ download_and_unpack () {
 #   [[ $PACKAGE_SHA1 ]] || die "Missing SHA1."
 #   download_and_unpack
 # }
+
+validate_package () {
+  if [ -z "$PACKAGE_NAME" ]; then die_with 101 "Missing package name"; fi
+  if [ -z "$PACKAGE_VERSION" ]; then die_with 102 "Missing package version"; fi
+  if [ -z "$PACKAGE_DESCRIPTION" ]; then die_with 103 "Missing package description"; fi
+  # PACKAGE_KEYWORDS is optional
+  if ! type @install &> /dev/null; then die_with 104 ":install method missing"; fi
+  return 0
+}

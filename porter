@@ -43,7 +43,7 @@ usage () {
 ACTION=${1:-"help"}
 ARGS="${@:2}"
 
-validate_arguments () {
+validate_args () {
   if [[ -z $ARGS ]]; then
     die "$(_echo gray Usage:) $(_echo white porter $ACTION $(_echo yellow name))"
   fi
