@@ -10,9 +10,6 @@ if [[ $ROOT == ../* ]]; then
 fi
 LIB="$ROOT/lib"
 
-PORTER_DIR="$HOME/.porter"
-PORTER_CACHE_DIR="$HOME/.porter/.cache"
-
 VERSION="0.0.1"
 
 # -----------------------------------------------------------------------------
