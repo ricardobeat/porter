@@ -15,8 +15,9 @@ VERSION="0.0.1"
 # -----------------------------------------------------------------------------
 
 source $LIB/utils.sh
-source $LIB/boot.sh
 source $LIB/colors.sh
+source $LIB/boot.sh
+source $LIB/core.sh
 
 for command in $ROOT/commands/*; do
   source $command
