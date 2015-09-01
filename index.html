@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>porter: private package manager</title>
+  <meta name="description" content="porter is a package manager built for team collaboration. easily install, publish and search internal tools and applications from the comfort of your terminal. porter works on OSX and Linux and has zero dependencies.">
+  <meta name="author" content="Ricardo Tomasi">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <script>
+    if (document.querySelector && document.addEventListener && document.documentElement.classList) {
+        document.documentElement.className = 'has-js';
+    }
+  </script>
+
+</head>
+<body>
+
+  <div class="container">
+    <header class="page-header row">
+      <div class="two-thirds column">
+        <h1 class="page-title">
+          <span class="page-title--heading">porter</span>
+          <span class="page-title--subtitle">: private package manager</span>
+        </h1>
+        <p>A self-hosted package manager built for team collaboration.</p>
+        <p>Easily search, install and publish applications from the comfort of your internal network. Porter is written in <em>bash</em>, works on OSX and Linux and has zero dependencies.</p>
+        <p>
+          Install via Homebrew: <code>brew install porter</code><br/>
+          View source: <a href="#">http://github.com/ricardobeat/porter</a></p>
+      </div>
+    </header>
+
+    <div class="row">
+
+      <div class="porter-command row">
+        <a href="#" class="porter-command--name" data-toggle="command-search">search</a>
+        <div class="porter-command--description hidden" id="command-search">
+          <pre>porter search [string]</pre>
+          <p>Search the remote repo for packages matching <code>[string]</code>. A full-text search on package files is performed.</p>
+        </div>
+      </div>
+
+      <div class="porter-command row">
+        <a href="#" class="porter-command--name" data-toggle="command-install">install</a>
+        <div class="porter-command--description hidden" id="command-install">
+          <pre>porter install [package-name]</pre>
+          <p>Fetch and install [package-name] from the remote repo. Packages are a bundle containing a <code>porter.sh</code> file. The package defines preinstall steps and which binaries will be linked into <code>/usr/local/bin</code>.</p>
+        </div>
+      </div>
+
+      <div class="porter-command row">
+        <a href="#" class="porter-command--name" data-toggle="command-uninstall">uninstall</a>
+        <div class="porter-command--description hidden" id="command-uninstall">
+          <pre>porter uninstall [package-name]</pre>
+          <p>Remove symlinks from <code>/usr/local/bin</code>. Any other modifications made to the system must be reversed by the package's own uninstall hooks.</p>
+        </div>
+      </div>
+
+      <div class="porter-command row">
+        <a href="#" class="porter-command--name" data-toggle="command-list">list</a>
+        <div class="porter-command--description hidden" id="command-list">
+          <pre>porter uninstall [package-name]</pre>
+          <p>Remove symlinks from <code>/usr/local/bin</code>, after running any uninstall hooks.</p>
+        </div>
+      </div>
+
+      <div class="porter-command row">
+        <a href="#" class="porter-command--name" data-toggle="command-link">link</a>
+        <div class="porter-command--description hidden" id="command-link">
+          <pre>porter link [package-name]</pre>
+          <p>Link binaries using the <code>porter.sh</code> file in the current folder. Useful for development.</p>
+        </div>
+      </div>
+
+      <div class="porter-command row">
+        <a href="#" class="porter-command--name" data-toggle="command-publish">publish</a>
+        <div class="porter-command--description hidden" id="command-publish">
+          <pre>porter publish [package-name]</pre>
+          <p>Package and publish <code>[package-name]</code>. The folder will be zipped and uploaded to the remote defined in your <code>.porter-config</code> over SSH.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="scripts/main.js"></script>
+
+</body>
+</html>
