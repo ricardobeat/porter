@@ -4,6 +4,8 @@ version '0.0.0'
 
 describe 'test bin'
 
+install:bin '../bin/porter-test-bin1'
+
 @install () {
-  install_bin '../bin/porter-test-bin1'
+  bin '../bin/porter-test-bin1'
 }

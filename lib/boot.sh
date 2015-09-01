@@ -3,9 +3,11 @@ PORTER_DIR="${PORTER_DIR:-$HOME/.porter}"
 PORTER_BIN_DIR="${PORTER_BIN_DIR:-$HOME/bin}"
 
 PORTER_CACHE_DIR="$PORTER_DIR/.cache"
+PORTER_LINKS_DIR="$PORTER_DIR/.links"
 
 mkdir -p "$PORTER_DIR"
 mkdir -p "$PORTER_CACHE_DIR"
+mkdir -p "$PORTER_LINKS_DIR"
 
 touch "$PORTER_DIR/porter.conf"
 

@@ -11,3 +11,8 @@ get_package_path () {
   fi
   echo $PACKAGE_PATH
 }
+
+get_cache_path () {
+  local PACKAGE_NAME="$1"
+  local PACKAGE_PATH="$PORTER_CACHE_DIR/$"
+}

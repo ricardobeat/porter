@@ -71,3 +71,12 @@ setup () {
   [ "$status" -eq 0 ]
   [ "$output" = "bin test" ]
 }
+
+@test "uninstall bin" {
+  run porter install test/test-packages/test-bin.sh
+  run type porter-test-bin1
+  [ "$status" -eq 0 ]
+  run porter-test-bin1
+  [ "$status" -eq 0 ]
+  [ "$output" = "bin test" ]
+}

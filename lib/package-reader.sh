@@ -26,9 +26,11 @@ keywords () {
 }
 
 download_and_unpack () {
-  local DEST="$PORTER_DIR/$PACKAGE_ID"
+  local DEST="$PORTER_DIR/$PACKAGE_NAME"
   local CACHE_DEST="$PORTER_CACHE_DIR/$PACKAGE_ID.tar.gz"
   curl -o "$CACHE_DEST" "$PACKAGE_URL"
+  # handle upgrades?
+  # maybe should unpack downloaded stuff to /tmp first, and only move after install successful
   mkdir "$DEST"
   tar -C "$DEST" xzf "$CACHE_DEST"
 }
